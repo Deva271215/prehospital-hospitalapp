@@ -50,6 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="356dp"
         android:text="@string/text_timeSent"
+        android:fontFamily="@font/opensansbold"
         app:layout_constraintStart_toStartOf="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/text_condition" />
 
@@ -60,6 +61,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:text="@string/text_response"
+        android:fontFamily="@font/opensansbold"
         app:layout_constraintStart_toStartOf="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
@@ -70,6 +72,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="28dp"
         android:text="@string/text_condition"
+        android:fontFamily="@font/opensansbold"
         app:layout_constraintStart_toStartOf="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
