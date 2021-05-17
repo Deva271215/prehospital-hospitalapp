@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">Hospital App</string>
+    <string name="app_Name">G-One</string>
+    <string name="user_name">Nama</string>
+    <string name="user_email">Email</string>
+    <string name="user_pass">Sandi</string>
+    <string name="user_sign">Daftar</string>
+    <string name="account_have">Sudah punya akun? Masuk</string>
+    <string name="text_name">G-One</string>
+    <string name="user_login">Masuk</string>
+    <string name="account_donotHave">Belum punya akun? Daftar</string>
+    <string name="text_pName">G-One</string>
+    <string name="text_uName">RSUP Sanglah Hospital</string>
+    <string name="text_Medis">Lihat Rekaman Medis Pasien</string>
+    <string name="text_openMed">Buka</string>
+    <string name="text_groupName">Nama Kelompok</string>
+    <string name="value_groupName">BPBD Denpasar</string>
+    <string name="text_noHp">No. Hp</string>
+    <string name="value_noHp">085080909080</string>
+    <string name="text_email">Email</string>
+    <string name="value_email">bpbddenpasar1@gmail.com</string>
+    <string name="button_edit">Edit</string>
+    <string name="value_editgroupName">Nama Kelompok</string>
+    <string name="value_editnoHp">Nomor Hp</string>
+    <string name="value_editEmail">Email</string>
+    <string name="button_simpan">Simpan</string>
+    <string name="text_from">Dari BPBD Denpasar 1</string>
+    <string name="title_card">Posisi Awal</string>
+    <string name="gambar_pertolongan">Gambar Pertolongan Pertama</string>
+    <string name="text_timeSent">10.11</string>
+    <string name="text_response">Respon: 120/80</string>
+    <string name="text_condition">Kondisi Pasien Sadar</string>
+    <string name="title_date">15-Februari-2021</string>
+    <string name="text_gName">BPBD Denpasar 1</string>
+    <string name="text_patientCond">Cidera Kepala</string>
+</resources>

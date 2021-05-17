@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="30dp"
+    tools:context=".ProfileEditActivity">
+
+    <TextView
+        android:id="@+id/value_editgroupName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_nofill"
+        android:gravity="center_vertical"
+        android:paddingStart="20dp"
+        android:text="@string/value_editgroupName"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/title_groupName"
+        tools:layout_editor_absoluteX="10dp" />
+
+    <TextView
+        android:id="@+id/value_editnoHp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_nofill"
+        android:gravity="center_vertical"
+        android:paddingStart="20dp"
+        android:text="@string/value_editnoHp"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/value_editgroupName"
+        tools:layout_editor_absoluteX="10dp" />
+
+    <TextView
+        android:id="@+id/value_editEmail"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/button_nofill"
+        android:gravity="center_vertical"
+        android:paddingStart="20dp"
+        android:text="@string/value_editEmail"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/value_editnoHp"
+        tools:layout_editor_absoluteX="10dp" />
+
+    <Button
+        android:id="@+id/button_submite"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_noedge"
+        android:gravity="center"
+        android:text="@string/button_simpan"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/value_editEmail"
+        tools:layout_editor_absoluteX="30dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
