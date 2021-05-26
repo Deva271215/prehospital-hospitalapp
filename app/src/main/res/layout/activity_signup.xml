@@ -99,7 +99,7 @@
         app:layout_constraintTop_toBottomOf="@+id/groupPass"/>
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/signUpButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
