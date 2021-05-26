@@ -74,7 +74,7 @@
         app:layout_constraintTop_toBottomOf="@+id/groupPass" />
 
     <TextView
-        android:id="@+id/btnToSignIn"
+        android:id="@+id/btnToSignUp"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
