@@ -14,6 +14,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         onBtnToSignUpClicked()
+        onLoginButtonClicked()
     }
 
     private fun onBtnToSignUpClicked() {
@@ -21,5 +22,12 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun onLoginButtonClicked(){
+       binding.login.setOnClickListener{
+           val intent = Intent(this@LoginActivity, MainActivity::class.java)
+           startActivity(intent)
+       }
     }
 }
