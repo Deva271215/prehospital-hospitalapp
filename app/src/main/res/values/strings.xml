@@ -33,4 +33,5 @@
     <string name="title_date">15-Februari-2021</string>
     <string name="text_gName">BPBD Denpasar 1</string>
     <string name="text_patientCond">Cidera Kepala</string>
+    <string name="user_telp">Nomor telepon</string>
 </resources>
