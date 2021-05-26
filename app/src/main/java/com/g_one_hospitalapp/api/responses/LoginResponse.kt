@@ -13,7 +13,7 @@ data class LoginResponse (
     val message: String?,
 
     @field:SerializedName("data")
-    val data: SignUpData?
+    val data: LoginData?
 )
 
 data class LoginData (
@@ -21,5 +21,5 @@ data class LoginData (
     val user: UserResponse?,
 
     @field:SerializedName("access_token")
-    val accessToken: String,
+    val accessToken: String?,
 )

@@ -5,20 +5,25 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.g_one_hospitalapp.api.ConfigAPI
+import com.g_one_hospitalapp.api.responses.LoginData
 import com.g_one_hospitalapp.api.responses.LoginResponse
 import com.g_one_hospitalapp.databinding.ActivityLoginBinding
 import com.g_one_hospitalapp.models.UserEntity
+import com.g_one_hospitalapp.utilities.UserPreference
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var preference: UserPreference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        preference = UserPreference(applicationContext)
 
         onBtnToSignUpClicked()
         onLoginButtonClicked()
@@ -53,6 +58,9 @@ class LoginActivity : AppCompatActivity() {
                            response: Response<LoginResponse>
                        ) {
                            if (response.isSuccessful) {
+                               val value = LoginData(response.body()?.data?.user, response.body()?.data?.accessToken)
+                               preference.setLoginData(value)
+
                                val intent = Intent(this@LoginActivity, MainActivity::class.java)
                                startActivity(intent)
                            } else {
