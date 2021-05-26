@@ -33,4 +33,17 @@
     <string name="title_date">15-Februari-2021</string>
     <string name="text_gName">BPBD Denpasar 1</string>
     <string name="text_patientCond">Cidera Kepala</string>
+    <string name="user_telp">Nomor telepon</string>
+    <string name="user_password">Password</string>
+    <string name="name_faskes">Pilih Faskes</string>
+    <string name="user_Number">Nomor Telepon</string>
+
+    <string-array name="list_faskes">
+        <item>Pilih Rumah Sakit</item>
+        <item>Rumah Sakit Sanglah</item>
+        <item>Rumah Sakit Bros</item>
+        <item>Rumah Sakit Prima Medika</item>
+        <item>Rumah Sakit Kasih Ibu</item>
+    </string-array>
+
 </resources>
