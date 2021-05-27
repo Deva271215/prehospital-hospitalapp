@@ -6,14 +6,20 @@ data class UserResponse(
     @field:SerializedName("id")
     val id: String?,
 
-    @field:SerializedName("group_name")
-    val group_name: String?,
+    @field:SerializedName("account_type")
+    val accountType: String,
 
     @field:SerializedName("email")
     val email: String?,
 
     @field:SerializedName("telp")
     val telp: String?,
+
+    @field:SerializedName("fcm_token")
+    val fcmToken: String,
+
+    @field:SerializedName("hospital")
+    val hospital: HospitalsResponse,
 
     @field:SerializedName("is_deleted")
     val is_deleted: Boolean?,

@@ -3,6 +3,7 @@ package com.g_one_hospitalapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -12,6 +13,9 @@ import com.g_one_hospitalapp.api.responses.HospitalsResponse
 import com.g_one_hospitalapp.api.responses.SignUpResponse
 import com.g_one_hospitalapp.databinding.ActivitySignupBinding
 import com.g_one_hospitalapp.models.UserEntity
+import com.g_one_hospitalapp.utilities.FCMService
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -53,31 +57,39 @@ class SignupActivity : AppCompatActivity() {
                     Toast.makeText(this@SignupActivity, "Nomor telepon tidak boleh kosong", Toast.LENGTH_LONG).show()
                 }
                 else -> {
-                    // Create new user
-                    val user = UserEntity(
+                    FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+                        if (!task.isSuccessful) {
+                            Log.w("fcm_token", "Fetching FCM registration token failed", task.exception)
+                            return@OnCompleteListener
+                        }
+
+                        // Create new user
+                        val user = UserEntity(
                             email = emailValue,
                             password = passwordValue,
                             noHp = telpValue,
+                            fcmToken = task.result,
                             accountType = accountTypeValue,
-                            hospital = selectedHospital
-                    )
+                            hospital = selectedHospital,
+                        )
 
-                    // Call API
-                    ConfigAPI.instance.createUser(user).enqueue(object: Callback<SignUpResponse> {
-                        override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
-                            if (response.isSuccessful) {
-                                val intent = Intent(this@SignupActivity, LoginActivity::class.java)
-                                startActivity(intent)
+                        // Call API
+                        ConfigAPI.instance.createUser(user).enqueue(object: Callback<SignUpResponse> {
+                            override fun onResponse(call: Call<SignUpResponse>, response: Response<SignUpResponse>) {
+                                if (response.isSuccessful) {
+                                    val intent = Intent(this@SignupActivity, LoginActivity::class.java)
+                                    startActivity(intent)
 
-                                Toast.makeText(this@SignupActivity, response.body()?.message, Toast.LENGTH_LONG).show()
-                            } else {
-                                Toast.makeText(this@SignupActivity, "Proses gagal dalam membuat akun", Toast.LENGTH_LONG).show()
+                                    Toast.makeText(this@SignupActivity, response.body()?.message, Toast.LENGTH_LONG).show()
+                                } else {
+                                    Toast.makeText(this@SignupActivity, "Proses gagal dalam membuat akun", Toast.LENGTH_LONG).show()
+                                }
                             }
-                        }
 
-                        override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
-                            Toast.makeText(this@SignupActivity, t.message, Toast.LENGTH_LONG).show()
-                        }
+                            override fun onFailure(call: Call<SignUpResponse>, t: Throwable) {
+                                Toast.makeText(this@SignupActivity, t.message, Toast.LENGTH_LONG).show()
+                            }
+                        })
                     })
                 }
             }
