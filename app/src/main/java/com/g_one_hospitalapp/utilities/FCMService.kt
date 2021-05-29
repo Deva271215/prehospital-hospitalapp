@@ -1,14 +1,16 @@
 package com.g_one_hospitalapp.utilities
 
+import android.app.NotificationManager
 import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
 import com.g_one_hospitalapp.MainActivity
 import com.g_one_hospitalapp.R
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import kotlin.random.Random
 
 class FCMService: FirebaseMessagingService() {
     override fun onNewToken(p0: String) {
@@ -25,21 +27,20 @@ class FCMService: FirebaseMessagingService() {
     }
 
     private fun showNotification(title: String, body: String) {
+        val notificationId = Random.nextInt()
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val intent = Intent(this@FCMService, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
         val pendingIntent = PendingIntent.getActivity(this@FCMService, 0, intent, PendingIntent.FLAG_ONE_SHOT)
-
         val builder = NotificationCompat.Builder(this@FCMService, "default")
             .setContentTitle(title)
             .setContentText(body)
             .setSmallIcon(R.drawable.ic_notification)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
+            .build()
 
-        with(NotificationManagerCompat.from(this)) {
-            notify(0, builder.build())
-        }
+        notificationManager.notify(notificationId, builder)
     }
 }
