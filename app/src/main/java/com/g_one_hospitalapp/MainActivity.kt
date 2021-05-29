@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
+import android.view.View
 import com.g_one_hospitalapp.databinding.ActivityMainBinding
 import com.g_one_hospitalapp.utilities.UserPreference
 import com.google.firebase.ktx.Firebase
@@ -31,8 +33,19 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.history_menu, menu)
-
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        when(item.itemId) {
+            R.id.icon_history -> {
+                val intent = Intent(this, PatientHistoryActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+
     }
 
     fun onOpenChatButtonClicked() {
