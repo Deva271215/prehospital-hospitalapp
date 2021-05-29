@@ -43,6 +43,7 @@
     <string name="label_response">Respon</string>
     <string name="label_condition">Kondisi</string>
     <string name="label_action">Aksi</string>
+    <string name="history_title">History Icon</string>
 
     <string-array name="list_faskes">
         <item>Pilih Rumah Sakit</item>

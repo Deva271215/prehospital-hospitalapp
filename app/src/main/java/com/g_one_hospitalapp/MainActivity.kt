@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import com.g_one_hospitalapp.databinding.ActivityMainBinding
 import com.g_one_hospitalapp.utilities.UserPreference
 import com.google.firebase.ktx.Firebase
@@ -26,6 +27,12 @@ class MainActivity : AppCompatActivity() {
         binding.titleUName.text = preference.getLoginData().user?.hospital?.name ?: "Rumah Sakit Gadungan"
 
         onOpenChatButtonClicked()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.history_menu, menu)
+
+        return super.onCreateOptionsMenu(menu)
     }
 
     fun onOpenChatButtonClicked() {
