@@ -15,13 +15,15 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        preference = UserPreference(applicationContext)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        preference = UserPreference(applicationContext)
-
         val data = preference.getLoginData()
         FirebaseMessaging.getInstance().subscribeToTopic(data.user?.hospital?.code.toString())
+
+        binding.titleUName.text = preference.getLoginData().user?.hospital?.name ?: "Rumah Sakit Gadungan"
 
         onOpenChatButtonClicked()
     }
