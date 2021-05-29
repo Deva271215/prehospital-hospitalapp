@@ -1,5 +1,6 @@
 package com.g_one_hospitalapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.g_one_hospitalapp.databinding.ActivityPatientHistoryBinding
@@ -16,5 +17,15 @@ class PatientHistoryActivity : AppCompatActivity() {
 
         binding = ActivityPatientHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Riwayat Pertolongan"
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        return true
+    }
+
 }
