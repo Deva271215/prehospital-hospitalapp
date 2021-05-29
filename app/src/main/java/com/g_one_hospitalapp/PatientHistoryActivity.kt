@@ -4,11 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.g_one_hospitalapp.api.ConfigAPI
 import com.g_one_hospitalapp.api.responses.MessageResponse
 import com.g_one_hospitalapp.databinding.ActivityPatientHistoryBinding
 import com.g_one_hospitalapp.utilities.SocketIOInstance
 import com.g_one_hospitalapp.utilities.UserPreference
+import com.g_one_hospitalapp.view.adapters.PatientHistoryAdapter
+import kotlinx.android.synthetic.main.activity_patient_history.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -20,6 +23,7 @@ class PatientHistoryActivity : AppCompatActivity() {
 
     private lateinit var preference: UserPreference
     private lateinit var binding: ActivityPatientHistoryBinding
+    private lateinit var adapter: PatientHistoryAdapter
     private var socket: SocketIOInstance = SocketIOInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +32,11 @@ class PatientHistoryActivity : AppCompatActivity() {
 
         binding = ActivityPatientHistoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Adapter
+        adapter = PatientHistoryAdapter()
+        rvChatField.layoutManager = LinearLayoutManager(applicationContext)
+        rvChatField.adapter = adapter
 
         socket.connectToSocketServer()
         socket.getSocket()?.connect()
@@ -41,7 +50,10 @@ class PatientHistoryActivity : AppCompatActivity() {
                     call: Call<ArrayList<MessageResponse>>,
                     response: Response<ArrayList<MessageResponse>>
                 ) {
-                    Log.i("response", response.body().toString())
+                    Log.i("message", response.body().toString())
+                    if (response.isSuccessful) {
+                        adapter.setMessages(response.body()!!)
+                    }
                 }
 
                 override fun onFailure(call: Call<ArrayList<MessageResponse>>, t: Throwable) {

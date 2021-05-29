@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:scrollbars="none"
             android:visibility="visible"
+            app:stackFromEnd="true"
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
             tools:listitem="@layout/history_list"/>
     </ScrollView>

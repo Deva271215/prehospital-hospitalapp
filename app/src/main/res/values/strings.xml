@@ -37,6 +37,12 @@
     <string name="user_password">Password</string>
     <string name="name_faskes">Pilih Faskes</string>
     <string name="user_Number">Nomor Telepon</string>
+    <string name="text_action">Aksi: blablabla</string>
+    <string name="text_result">Result: result</string>
+    <string name="label_result">Hasil</string>
+    <string name="label_response">Respon</string>
+    <string name="label_condition">Kondisi</string>
+    <string name="label_action">Aksi</string>
 
     <string-array name="list_faskes">
         <item>Pilih Rumah Sakit</item>

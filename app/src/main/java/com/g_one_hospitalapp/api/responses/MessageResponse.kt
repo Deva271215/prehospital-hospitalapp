@@ -19,7 +19,10 @@ data class MessageResponse(
     val condition: String?,
 
     @field:SerializedName("action")
-    val action: String,
+    val action: String?,
+
+    @field:SerializedName("creation_time")
+    val creationTime: String,
 
     @field:SerializedName("attachments")
     val attachments: String?,
