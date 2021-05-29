@@ -1,6 +1,5 @@
 package com.g_one_hospitalapp.view.adapters
 
-import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import com.g_one_hospitalapp.R
 import com.g_one_hospitalapp.api.responses.MessageResponse
 import kotlinx.android.synthetic.main.chat_list.view.*
 
-class PatientHistoryAdapter: RecyclerView.Adapter<PatientHistoryAdapter.ViewHolder>() {
+class MedRecordAdapter: RecyclerView.Adapter<MedRecordAdapter.ViewHolder>() {
     private var messages = ArrayList<MessageResponse>()
 
     fun setMessages(m: ArrayList<MessageResponse>) {
@@ -52,8 +51,8 @@ class PatientHistoryAdapter: RecyclerView.Adapter<PatientHistoryAdapter.ViewHold
                 if (!item.attachments.isNullOrEmpty()) {
                     cardView.visibility = View.VISIBLE
                     Glide.with(itemView.context)
-                            .load(item.attachments)
-                            .into(docPicture)
+                        .load(item.attachments)
+                        .into(docPicture)
                 }
             }
         }

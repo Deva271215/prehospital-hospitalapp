@@ -37,8 +37,8 @@ class MainActivity : AppCompatActivity() {
 
     fun onOpenChatButtonClicked() {
         binding.openChatButton.setOnClickListener {
-            val intent = Intent(this, PatientHistoryActivity::class.java)
-            intent.putExtra(PatientHistoryActivity.CHAT_ID, "c1679c13-1a05-4384-b996-b6eafcab575a")
+            val intent = Intent(this, MedRecordActivity::class.java)
+            intent.putExtra(MedRecordActivity.CHAT_ID, "c1679c13-1a05-4384-b996-b6eafcab575a")
             startActivity(intent)
         }
     }
