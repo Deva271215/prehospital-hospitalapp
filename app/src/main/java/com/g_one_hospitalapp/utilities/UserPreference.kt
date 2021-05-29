@@ -30,4 +30,5 @@ class UserPreference(context: Context) {
         val accessToken = preferences.getString(ACCESS_TOKEN, "")
         return LoginData(user = json, accessToken = accessToken)
     }
+    fun getIsLoggedIn(): Boolean = preferences.getBoolean(IS_LOGGED_IN, false)
 }

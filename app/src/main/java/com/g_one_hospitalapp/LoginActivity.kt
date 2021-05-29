@@ -20,10 +20,14 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        preference = UserPreference(applicationContext)
+        if (preference.getIsLoggedIn()) {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        preference = UserPreference(applicationContext)
 
         onBtnToSignUpClicked()
         onLoginButtonClicked()
