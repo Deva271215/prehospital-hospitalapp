@@ -1,5 +1,6 @@
 package com.g_one_hospitalapp.view.adapters
 
+import android.os.Message
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,11 @@ class PatientHistoryAdapter: RecyclerView.Adapter<PatientHistoryAdapter.ViewHold
     fun setMessages(m: ArrayList<MessageResponse>) {
         messages.clear()
         messages.addAll(m)
+        notifyDataSetChanged()
+    }
+
+    fun setMessage(message: MessageResponse) {
+        messages.add(message)
         notifyDataSetChanged()
     }
 

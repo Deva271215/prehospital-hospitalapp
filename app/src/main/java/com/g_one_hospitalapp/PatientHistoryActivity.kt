@@ -2,7 +2,6 @@ package com.g_one_hospitalapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.g_one_hospitalapp.api.ConfigAPI
@@ -39,7 +38,9 @@ class PatientHistoryActivity : AppCompatActivity() {
         rvChatField.adapter = adapter
 
         socket.connectToSocketServer()
-        socket.getSocket()?.connect()
+        if (!socket.getSocket()?.connected()!!) {
+            socket.getSocket()?.connect()
+        }
         socket.getSocket()?.emit("join_chat", CHAT_ID)
 
         val chatId = intent.getStringExtra(CHAT_ID)
@@ -50,7 +51,6 @@ class PatientHistoryActivity : AppCompatActivity() {
                     call: Call<ArrayList<MessageResponse>>,
                     response: Response<ArrayList<MessageResponse>>
                 ) {
-                    Log.i("message", response.body().toString())
                     if (response.isSuccessful) {
                         adapter.setMessages(response.body()!!)
                     }
@@ -60,5 +60,18 @@ class PatientHistoryActivity : AppCompatActivity() {
                     Toast.makeText(this@PatientHistoryActivity, t.message, Toast.LENGTH_LONG).show()
                 }
         })
+
+        listenToRecvMessageEvent()
+    }
+
+    private fun listenToRecvMessageEvent() {
+        socket.getSocket()?.on("recv_message") {
+            adapter.setMessage(it[0] as MessageResponse)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        socket.getSocket()?.disconnect()
     }
 }
