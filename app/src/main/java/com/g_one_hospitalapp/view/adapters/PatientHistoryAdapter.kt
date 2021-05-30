@@ -31,7 +31,7 @@ class PatientHistoryAdapter: RecyclerView.Adapter<PatientHistoryAdapter.ViewHold
                 text_gName.text = item.hospital.name
                 setOnClickListener {
                     val intent = Intent(itemView.context, MedRecordActivity::class.java)
-                    intent.putExtra(MedRecordActivity.CHAT_ID, item.id)
+                    intent.putExtra(MedRecordActivity.CHAT_ROOM_ID, item.id)
                     intent.putExtra(MedRecordActivity.IS_FROM_HISTORY, true)
                     itemView.context.startActivity(intent)
                 }

@@ -20,7 +20,7 @@ import retrofit2.Response
 
 class MedRecordActivity : AppCompatActivity() {
     companion object {
-        const val CHAT_ID = "chat_id"
+        const val CHAT_ROOM_ID = "chat_room_id"
         const val IS_FROM_HISTORY = "is_from_history"
     }
 
@@ -42,7 +42,7 @@ class MedRecordActivity : AppCompatActivity() {
         rvChatField.layoutManager = LinearLayoutManager(applicationContext)
         rvChatField.adapter = adapter
 
-        val chatId = intent.getStringExtra(CHAT_ID)
+        val chatRoomId = intent.getStringExtra(CHAT_ROOM_ID)
 
         // If user come from history
         // Then don't connect to socket
@@ -52,12 +52,12 @@ class MedRecordActivity : AppCompatActivity() {
             if (!socket.getSocket()?.connected()!!) {
                 socket.getSocket()?.connect()
             }
-            socket.getSocket()?.emit("join_chat", chatId)
+            socket.getSocket()?.emit("join_chat", chatRoomId)
         }
 
         // Fetch messages from API based on specified chat id
         ConfigAPI.instance
-            .getMessages(chatId!!, "Bearer ${preference.getLoginData().accessToken}")
+            .getMessages(chatRoomId!!, "Bearer ${preference.getLoginData().accessToken}")
             .enqueue(object: Callback<ArrayList<MessageResponse>> {
                 override fun onResponse(
                     call: Call<ArrayList<MessageResponse>>,
