@@ -56,22 +56,24 @@ class MedRecordActivity : AppCompatActivity() {
         }
 
         // Fetch messages from API based on specified chat id
-        ConfigAPI.instance
-            .getMessages(chatRoomId!!, "Bearer ${preference.getLoginData().accessToken}")
-            .enqueue(object: Callback<ArrayList<MessageResponse>> {
-                override fun onResponse(
-                    call: Call<ArrayList<MessageResponse>>,
-                    response: Response<ArrayList<MessageResponse>>
-                ) {
-                    if (response.isSuccessful) {
-                        adapter.setMessages(response.body()!!)
+        if (chatRoomId != null) {
+            ConfigAPI.instance
+                .getMessages(chatRoomId, "Bearer ${preference.getLoginData().accessToken}")
+                .enqueue(object: Callback<ArrayList<MessageResponse>> {
+                    override fun onResponse(
+                        call: Call<ArrayList<MessageResponse>>,
+                        response: Response<ArrayList<MessageResponse>>
+                    ) {
+                        if (response.isSuccessful) {
+                            adapter.setMessages(response.body()!!)
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<ArrayList<MessageResponse>>, t: Throwable) {
-                    Toast.makeText(this@MedRecordActivity, t.message, Toast.LENGTH_LONG).show()
-                }
-            })
+                    override fun onFailure(call: Call<ArrayList<MessageResponse>>, t: Throwable) {
+                        Toast.makeText(this@MedRecordActivity, t.message, Toast.LENGTH_LONG).show()
+                    }
+                })
+        }
 
         listenToRecvMessageEvent()
     }
