@@ -44,7 +44,7 @@ class UserPreference(context: Context) {
     // Chats
     fun setChatRoomId(value: String) {
         val editor = preferences.edit()
-        editor.apply { putString(CHAT_ROOM_ID, value) }.apply()
+        editor.apply { putString(CHAT_ROOM_ID, value) }.commit()
     }
     fun getChatRoomId(): String? = preferences.getString(CHAT_ROOM_ID, "")
 }

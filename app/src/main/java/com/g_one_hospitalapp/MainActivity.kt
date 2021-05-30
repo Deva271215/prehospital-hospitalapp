@@ -1,6 +1,8 @@
 package com.g_one_hospitalapp
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -30,9 +32,6 @@ class MainActivity : AppCompatActivity() {
         // Set hospital name
         binding.titleUName.text = preference.getLoginData().user?.hospital?.name ?: "Rumah Sakit Gadungan"
 
-        val chatRoomId = intent.getStringExtra(CHAT_ROOM_ID)
-        Log.i("chatRoomId", chatRoomId.toString())
-
         onOpenChatButtonClicked()
         subscribeToFirebaseTopic()
     }
@@ -59,8 +58,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun onOpenChatButtonClicked() {
         binding.openChatButton.setOnClickListener {
+            val chatRoomId = preference.getChatRoomId()
             val intent = Intent(this, MedRecordActivity::class.java)
-            intent.putExtra(MedRecordActivity.CHAT_ROOM_ID, "ashiap")
+            intent.putExtra(MedRecordActivity.CHAT_ROOM_ID, chatRoomId)
             startActivity(intent)
         }
     }

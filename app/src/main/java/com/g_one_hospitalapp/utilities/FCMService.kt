@@ -14,23 +14,24 @@ import com.google.firebase.messaging.RemoteMessage
 import kotlin.random.Random
 
 class FCMService: FirebaseMessagingService() {
+    private lateinit var preference: UserPreference
+
     override fun onMessageReceived(p0: RemoteMessage) {
         super.onMessageReceived(p0)
-        if (p0.notification != null) {
-            showNotification(
-                    p0.notification?.title.toString(),
-                    p0.notification?.body.toString(),
-                    p0.notification?.clickAction.toString(),
-                    p0.data["chat_id"].toString()
-            )
-        }
+        preference = UserPreference(applicationContext)
+        preference.setChatRoomId(p0.data["chat_id"].toString())
+
+        showNotification(
+                p0.data["title"].toString(),
+                p0.data["body"].toString(),
+                p0.data["click_action"].toString()
+        )
     }
 
-    private fun showNotification(title: String, body: String, clickAction: String, chatRoomId: String) {
+    private fun showNotification(title: String, body: String, clickAction: String) {
         val channelId = "default"
         var intent = Intent(clickAction)
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP)
-        intent.putExtra(MainActivity.CHAT_ROOM_ID, chatRoomId)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP
 
         val pendingIntent = PendingIntent.getBroadcast(
                 this,
