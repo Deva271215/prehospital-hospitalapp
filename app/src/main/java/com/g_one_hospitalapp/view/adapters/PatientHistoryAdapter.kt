@@ -9,6 +9,8 @@ import com.g_one_hospitalapp.MedRecordActivity
 import com.g_one_hospitalapp.R
 import com.g_one_hospitalapp.api.responses.ChatResponse
 import kotlinx.android.synthetic.main.history_list.view.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class PatientHistoryAdapter: RecyclerView.Adapter<PatientHistoryAdapter.ViewHolder>() {
     private var chats = ArrayList<ChatResponse>()
@@ -21,8 +23,11 @@ class PatientHistoryAdapter: RecyclerView.Adapter<PatientHistoryAdapter.ViewHold
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         fun bind(item: ChatResponse) {
+            val splitDate = item.createdAt.split(".").toTypedArray()
+            val date = LocalDateTime.parse(splitDate[0])
+            val formatter = DateTimeFormatter.ofPattern("dd LLLL YYYY")
             with(itemView) {
-                title_chat.text = item.createdAt
+                title_chat.text = formatter.format(date)
                 text_gName.text = item.hospital.name
                 setOnClickListener {
                     val intent = Intent(itemView.context, MedRecordActivity::class.java)
