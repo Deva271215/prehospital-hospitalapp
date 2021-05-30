@@ -10,7 +10,7 @@ import com.g_one_hospitalapp.databinding.ActivityMedRecordBinding
 import com.g_one_hospitalapp.utilities.SocketIOInstance
 import com.g_one_hospitalapp.utilities.UserPreference
 import com.g_one_hospitalapp.view.adapters.MedRecordAdapter
-import kotlinx.android.synthetic.main.activity_patient_history.*
+import kotlinx.android.synthetic.main.activity_med_record.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,8 +32,8 @@ class MedRecordActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         adapter = MedRecordAdapter()
-        rvHistoryList.layoutManager = LinearLayoutManager(applicationContext)
-        rvHistoryList.adapter = adapter
+        rvChatField.layoutManager = LinearLayoutManager(applicationContext)
+        rvChatField.adapter = adapter
 
         socket.connectToSocketServer()
         if (!socket.getSocket()?.connected()!!) {
