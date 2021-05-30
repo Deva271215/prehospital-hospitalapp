@@ -33,4 +33,25 @@
     <string name="title_date">15-Februari-2021</string>
     <string name="text_gName">BPBD Denpasar 1</string>
     <string name="text_patientCond">Cidera Kepala</string>
+    <string name="user_telp">Nomor telepon</string>
+    <string name="user_password">Password</string>
+    <string name="name_faskes">Pilih Faskes</string>
+    <string name="user_Number">Nomor Telepon</string>
+    <string name="text_action">Aksi: blablabla</string>
+    <string name="text_result">Result: result</string>
+    <string name="label_result">Hasil</string>
+    <string name="label_response">Respon</string>
+    <string name="label_condition">Kondisi</string>
+    <string name="label_action">Aksi</string>
+    <string name="history_title">History Icon</string>
+    <string name="logout_title">Logout icon</string>
+
+    <string-array name="list_faskes">
+        <item>Pilih Rumah Sakit</item>
+        <item>Rumah Sakit Sanglah</item>
+        <item>Rumah Sakit Bros</item>
+        <item>Rumah Sakit Prima Medika</item>
+        <item>Rumah Sakit Kasih Ibu</item>
+    </string-array>
+
 </resources>

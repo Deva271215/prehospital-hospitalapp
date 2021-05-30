@@ -20,20 +20,20 @@
         app:layout_constraintVertical_bias="0.058"
         tools:layout_editor_absoluteX="93dp" />
 
-    <EditText
-        android:id="@+id/groupName"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
+    <Spinner
+        android:id="@+id/faskesName"
+        android:layout_width="356dp"
+        android:layout_height="67dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="24dp"
-        android:autofillHints="@string/user_name"
-        android:fontFamily="@font/opensansbold"
+        android:autofillHints="@string/name_faskes"
         android:background="@drawable/button_nofill"
-        android:hint="@string/user_name"
+        android:fontFamily="@font/opensansbold"
+        android:hint="@string/name_faskes"
         android:paddingStart="20dp"
         android:selectAllOnFocus="true"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,11 +52,11 @@
         android:hint="@string/user_email"
         android:paddingStart="20dp"
         android:selectAllOnFocus="true"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/groupName"/>
+        app:layout_constraintTop_toBottomOf="@+id/faskesName"/>
 
     <EditText
         android:id="@+id/groupPass"
@@ -69,16 +69,37 @@
         android:fontFamily="@font/opensansbold"
         android:background="@drawable/button_nofill"
         android:hint="@string/user_pass"
+        android:inputType="textPassword"
         android:paddingStart="20dp"
         android:selectAllOnFocus="true"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/groupEmail"/>
 
+    <EditText
+        android:id="@+id/groupNumber"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="24dp"
+        android:autofillHints="@string/user_Number"
+        android:fontFamily="@font/opensansbold"
+        android:background="@drawable/button_nofill"
+        android:hint="@string/user_Number"
+        android:paddingStart="20dp"
+        android:inputType="number"
+        android:selectAllOnFocus="true"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/groupPass"/>
+
     <Button
-        android:id="@+id/signin"
+        android:id="@+id/signUpButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_gravity="start"
@@ -90,7 +111,7 @@
         android:fontFamily="@font/opensansbold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/groupPass" />
+        app:layout_constraintTop_toBottomOf="@+id/groupNumber" />
 
     <TextView
         android:id="@+id/btnToSignIn"
@@ -104,6 +125,6 @@
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signin" />
+        app:layout_constraintTop_toBottomOf="@+id/signUpButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
