@@ -16,10 +16,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class PatientHistoryActivity : AppCompatActivity() {
-    companion object {
-        const val CHAT_ID = "chat_id"
-    }
-
     private lateinit var binding: ActivityPatientHistoryBinding
     private lateinit var adapter: PatientHistoryAdapter
     private lateinit var preference: UserPreference
