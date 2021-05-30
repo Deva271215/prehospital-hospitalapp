@@ -32,8 +32,8 @@ class MedRecordActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         adapter = MedRecordAdapter()
-        rvChatField.layoutManager = LinearLayoutManager(applicationContext)
-        rvChatField.adapter = adapter
+        rvHistoryList.layoutManager = LinearLayoutManager(applicationContext)
+        rvHistoryList.adapter = adapter
 
         socket.connectToSocketServer()
         if (!socket.getSocket()?.connected()!!) {
