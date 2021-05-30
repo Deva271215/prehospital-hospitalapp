@@ -1,9 +1,11 @@
 package com.g_one_hospitalapp.view.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.g_one_hospitalapp.MedRecordActivity
 import com.g_one_hospitalapp.R
 import com.g_one_hospitalapp.api.responses.ChatResponse
 import kotlinx.android.synthetic.main.history_list.view.*
@@ -22,6 +24,12 @@ class PatientHistoryAdapter: RecyclerView.Adapter<PatientHistoryAdapter.ViewHold
             with(itemView) {
                 title_chat.text = item.createdAt
                 text_gName.text = item.hospital.name
+                setOnClickListener {
+                    val intent = Intent(itemView.context, MedRecordActivity::class.java)
+                    intent.putExtra(MedRecordActivity.CHAT_ID, item.id)
+                    intent.putExtra(MedRecordActivity.IS_FROM_HISTORY, true)
+                    itemView.context.startActivity(intent)
+                }
             }
         }
     }

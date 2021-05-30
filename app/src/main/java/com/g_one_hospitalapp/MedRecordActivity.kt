@@ -18,6 +18,7 @@ import retrofit2.Response
 class MedRecordActivity : AppCompatActivity() {
     companion object {
         const val CHAT_ID = "chat_id"
+        const val IS_FROM_HISTORY = "is_from_history"
     }
 
     private lateinit var preference: UserPreference
@@ -35,11 +36,14 @@ class MedRecordActivity : AppCompatActivity() {
         rvChatField.layoutManager = LinearLayoutManager(applicationContext)
         rvChatField.adapter = adapter
 
-        socket.connectToSocketServer()
-        if (!socket.getSocket()?.connected()!!) {
-            socket.getSocket()?.connect()
+        val isFromHistory = intent.getBooleanExtra(IS_FROM_HISTORY, false)
+        if (!isFromHistory) {
+            socket.connectToSocketServer()
+            if (!socket.getSocket()?.connected()!!) {
+                socket.getSocket()?.connect()
+            }
+            socket.getSocket()?.emit("join_chat", PatientHistoryActivity.CHAT_ID)
         }
-        socket.getSocket()?.emit("join_chat", PatientHistoryActivity.CHAT_ID)
 
         val chatId = intent.getStringExtra(PatientHistoryActivity.CHAT_ID)
         ConfigAPI.instance
