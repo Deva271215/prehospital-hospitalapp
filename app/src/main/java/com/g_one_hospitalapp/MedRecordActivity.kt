@@ -1,5 +1,6 @@
 package com.g_one_hospitalapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -31,6 +32,9 @@ class MedRecordActivity : AppCompatActivity() {
         preference = UserPreference(applicationContext)
         binding = ActivityMedRecordBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Rekam Medis"
 
         adapter = MedRecordAdapter()
         rvChatField.layoutManager = LinearLayoutManager(applicationContext)
@@ -64,6 +68,11 @@ class MedRecordActivity : AppCompatActivity() {
             })
 
         listenToRecvMessageEvent()
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     private fun listenToRecvMessageEvent() {
