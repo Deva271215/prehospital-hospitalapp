@@ -33,4 +33,10 @@ interface ServiceAPI {
     // Chat
     @GET("chats")
     fun getChats(@Header("Authorization") header: String): Call<ArrayList<ChatResponse>>
+
+    @GET("chats/hospital/{id}")
+    fun getChatsByHospital(
+            @Path("id") id: String,
+            @Header("Authorization") header: String
+    ): Call<ArrayList<ChatResponse>>
 }

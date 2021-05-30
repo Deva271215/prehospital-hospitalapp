@@ -49,7 +49,8 @@ class PatientHistoryActivity : AppCompatActivity() {
 
     private fun loadChatsHistory() {
         val token = preference.getLoginData().accessToken
-        ConfigAPI.instance.getChats("Bearer $token").enqueue(object: Callback<ArrayList<ChatResponse>> {
+        val hospitalId = preference.getLoginData().user?.hospital?.id
+        ConfigAPI.instance.getChatsByHospital(hospitalId!!, "Bearer $token").enqueue(object: Callback<ArrayList<ChatResponse>> {
             override fun onResponse(call: Call<ArrayList<ChatResponse>>, response: Response<ArrayList<ChatResponse>>) {
                 if (response.isSuccessful) {
                     adapter.setChats(response.body()!!)
