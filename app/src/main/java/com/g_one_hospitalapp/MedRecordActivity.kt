@@ -3,6 +3,7 @@ package com.g_one_hospitalapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.g_one_hospitalapp.api.ConfigAPI
@@ -11,6 +12,7 @@ import com.g_one_hospitalapp.databinding.ActivityMedRecordBinding
 import com.g_one_hospitalapp.utilities.SocketIOInstance
 import com.g_one_hospitalapp.utilities.UserPreference
 import com.g_one_hospitalapp.view.adapters.MedRecordAdapter
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_med_record.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -40,16 +42,20 @@ class MedRecordActivity : AppCompatActivity() {
         rvChatField.layoutManager = LinearLayoutManager(applicationContext)
         rvChatField.adapter = adapter
 
+        val chatId = intent.getStringExtra(CHAT_ID)
+
+        // If user come from history
+        // Then don't connect to socket
         val isFromHistory = intent.getBooleanExtra(IS_FROM_HISTORY, false)
         if (!isFromHistory) {
             socket.connectToSocketServer()
             if (!socket.getSocket()?.connected()!!) {
                 socket.getSocket()?.connect()
             }
-            socket.getSocket()?.emit("join_chat", PatientHistoryActivity.CHAT_ID)
+            socket.getSocket()?.emit("join_chat", chatId)
         }
 
-        val chatId = intent.getStringExtra(PatientHistoryActivity.CHAT_ID)
+        // Fetch messages from API based on specified chat id
         ConfigAPI.instance
             .getMessages(chatId!!, "Bearer ${preference.getLoginData().accessToken}")
             .enqueue(object: Callback<ArrayList<MessageResponse>> {
@@ -76,8 +82,13 @@ class MedRecordActivity : AppCompatActivity() {
     }
 
     private fun listenToRecvMessageEvent() {
-        socket.getSocket()?.on("recv_message") {
-            adapter.setMessage(it[0] as MessageResponse)
+        socket.getSocket()?.on("recv_message") { args ->
+            if (args[0] != null) {
+                var data = Gson().fromJson("""${args[0]}""", MessageResponse::class.java)
+                runOnUiThread {
+                    adapter.setMessage(data)
+                }
+            }
         }
     }
 
