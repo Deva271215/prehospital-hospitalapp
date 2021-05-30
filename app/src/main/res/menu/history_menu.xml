@@ -6,4 +6,9 @@
         android:icon="@drawable/ic_baseline_history_24"
         android:title="@string/history_title"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/icon_logout"
+        android:icon="@drawable/ic_baseline_exit_to_app_24"
+        android:title="@string/logout_title"
+        app:showAsAction="always"/>
 </menu>

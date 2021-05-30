@@ -44,6 +44,7 @@
     <string name="label_condition">Kondisi</string>
     <string name="label_action">Aksi</string>
     <string name="history_title">History Icon</string>
+    <string name="logout_title">Logout icon</string>
 
     <string-array name="list_faskes">
         <item>Pilih Rumah Sakit</item>

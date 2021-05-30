@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import com.g_one_hospitalapp.databinding.ActivityMainBinding
 import com.g_one_hospitalapp.utilities.UserPreference
 import com.google.firebase.ktx.Firebase
@@ -41,6 +42,11 @@ class MainActivity : AppCompatActivity() {
         when(item.itemId) {
             R.id.icon_history -> {
                 val intent = Intent(this, PatientHistoryActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.icon_logout -> {
+                preference.clearLoginData()
+                val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }
         }

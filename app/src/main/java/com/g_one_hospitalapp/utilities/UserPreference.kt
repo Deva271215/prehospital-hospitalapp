@@ -25,6 +25,14 @@ class UserPreference(context: Context) {
             putBoolean(IS_LOGGED_IN, true)
         }.apply()
     }
+    fun clearLoginData() {
+        val editor = preferences.edit()
+        editor.apply {
+            putString(USER, "")
+            putString(ACCESS_TOKEN, "")
+            putBoolean(IS_LOGGED_IN, false)
+        }.apply()
+    }
     fun getLoginData(): LoginData {
         val json = gson.fromJson(preferences.getString(USER, ""), UserResponse::class.java)
         val accessToken = preferences.getString(ACCESS_TOKEN, "")
