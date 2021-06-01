@@ -32,6 +32,7 @@ class MedRecordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         preference = UserPreference(applicationContext)
+        preference.setChatRoomId("")
         binding = ActivityMedRecordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

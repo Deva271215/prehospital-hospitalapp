@@ -19,10 +19,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var preference: UserPreference
     private lateinit var binding: ActivityMainBinding
 
-    companion object {
-        const val CHAT_ROOM_ID = "chat_room_id"
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         preference = UserPreference(applicationContext)
@@ -57,8 +53,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onOpenChatButtonClicked() {
+        val chatRoomId = preference.getChatRoomId()
+        if (chatRoomId.isNullOrEmpty()) {
+            binding.openChatButton.visibility = View.GONE
+        }
         binding.openChatButton.setOnClickListener {
-            val chatRoomId = preference.getChatRoomId()
             val intent = Intent(this, MedRecordActivity::class.java)
             intent.putExtra(MedRecordActivity.CHAT_ROOM_ID, chatRoomId)
             startActivity(intent)
