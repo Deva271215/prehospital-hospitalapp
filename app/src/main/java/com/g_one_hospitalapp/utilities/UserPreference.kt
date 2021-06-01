@@ -11,6 +11,7 @@ class UserPreference(context: Context) {
         private const val USER = "user"
         private const val ACCESS_TOKEN = "access_token"
         private const val IS_LOGGED_IN = "is_logged_in"
+        private const val CHAT_ROOM_ID = "chat_room_id"
     }
 
     private val gson = Gson()
@@ -39,4 +40,11 @@ class UserPreference(context: Context) {
         return LoginData(user = json, accessToken = accessToken)
     }
     fun getIsLoggedIn(): Boolean = preferences.getBoolean(IS_LOGGED_IN, false)
+
+    // Chats
+    fun setChatRoomId(value: String) {
+        val editor = preferences.edit()
+        editor.apply { putString(CHAT_ROOM_ID, value) }.commit()
+    }
+    fun getChatRoomId(): String? = preferences.getString(CHAT_ROOM_ID, "")
 }

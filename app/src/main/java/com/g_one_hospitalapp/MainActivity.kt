@@ -1,6 +1,8 @@
 package com.g_one_hospitalapp
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -20,16 +22,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         preference = UserPreference(applicationContext)
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val data = preference.getLoginData()
-        FirebaseMessaging.getInstance().subscribeToTopic(data.user?.hospital?.code.toString())
-
+        // Set hospital name
         binding.titleUName.text = preference.getLoginData().user?.hospital?.name ?: "Rumah Sakit Gadungan"
 
         onOpenChatButtonClicked()
+        subscribeToFirebaseTopic()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -38,7 +38,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         when(item.itemId) {
             R.id.icon_history -> {
                 val intent = Intent(this, PatientHistoryActivity::class.java)
@@ -51,14 +50,29 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return super.onOptionsItemSelected(item)
-
     }
 
-    fun onOpenChatButtonClicked() {
+    private fun onOpenChatButtonClicked() {
+        val chatRoomId = preference.getChatRoomId()
+        if (chatRoomId.isNullOrEmpty()) {
+            binding.openChatButton.visibility = View.GONE
+        }
         binding.openChatButton.setOnClickListener {
             val intent = Intent(this, MedRecordActivity::class.java)
-            intent.putExtra(MedRecordActivity.CHAT_ID, "c1679c13-1a05-4384-b996-b6eafcab575a")
+            intent.putExtra(MedRecordActivity.CHAT_ROOM_ID, chatRoomId)
             startActivity(intent)
+        }
+    }
+
+    private fun subscribeToFirebaseTopic() {
+        val hospitalCode = preference.getLoginData().user?.hospital?.code
+        FirebaseMessaging.getInstance().subscribeToTopic(hospitalCode.toString()).addOnCompleteListener {
+            var message = "Subscribe to $hospitalCode successful!"
+            if (!it.isSuccessful) {
+                message = "Failed to subscribe to $hospitalCode!"
+            }
+            Log.i("hospital_code", hospitalCode!!)
+            Toast.makeText(this@MainActivity, message, Toast.LENGTH_LONG).show()
         }
     }
 }
