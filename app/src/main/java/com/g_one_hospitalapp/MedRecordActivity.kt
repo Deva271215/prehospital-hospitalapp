@@ -37,7 +37,7 @@ class MedRecordActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.title = "Rekam Medis"
+        supportActionBar?.title = "Lembar catatan korban"
 
         adapter = MedRecordAdapter()
         rvChatField.layoutManager = LinearLayoutManager(applicationContext)
