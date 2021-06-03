@@ -30,21 +30,15 @@ class FCMService: FirebaseMessagingService() {
 
     private fun showNotification(title: String, body: String, clickAction: String) {
         val channelId = "default"
-        var intent = Intent(clickAction)
-        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_SINGLE_TOP
-
-        val pendingIntent = PendingIntent.getBroadcast(
-                this,
-                0,
-                intent,
-                PendingIntent.FLAG_UPDATE_CURRENT
-        )
+        var intent = Intent(this, MainActivity::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0)
         val builder = NotificationCompat.Builder(this, channelId)
             .setContentTitle(title)
             .setContentText(body)
             .setSmallIcon(R.drawable.ic_notification)
             .setPriority(NotificationCompat.PRIORITY_HIGH)
             .setContentIntent(pendingIntent)
+            .addAction(R.drawable.ic_notification, "Ke Home Screen", pendingIntent)
 
         val notificationId = Random.nextInt()
         val channel = NotificationChannel(channelId, "Default channel", NotificationManager.IMPORTANCE_DEFAULT)
