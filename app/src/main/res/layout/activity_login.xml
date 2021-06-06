@@ -33,6 +33,7 @@
         android:autofillHints="@string/user_email"
         android:background="@drawable/button_nofill"
         android:fontFamily="@font/robotobold"
+        android:inputType="textEmailAddress"
         android:hint="@string/user_email"
         android:paddingStart="10dp"
         android:selectAllOnFocus="true"
