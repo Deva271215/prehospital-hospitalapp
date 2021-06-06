@@ -1,35 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="match_parent">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".SignupActivity">
 
-    <TextView
-        android:id="@+id/app_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/app_Name"
-        android:fontFamily="@font/opensansreguler"
-        android:textColor="@color/red"
-        android:textAlignment="center"
-        android:textSize="50sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.058"
-        tools:layout_editor_absoluteX="93dp" />
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:layout_marginVertical="50dp"
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/faskesName"
         android:layout_width="356dp"
         android:layout_height="67dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="36dp"
         android:layout_marginEnd="24dp"
         android:autofillHints="@string/name_faskes"
         android:background="@drawable/button_nofill"
-        android:fontFamily="@font/opensansbold"
+        android:fontFamily="@font/robotobold"
         android:hint="@string/name_faskes"
         android:paddingStart="20dp"
         android:selectAllOnFocus="true"
@@ -37,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_main" />
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <EditText
         android:id="@+id/groupEmail"
@@ -47,9 +49,10 @@
         android:layout_marginTop="36dp"
         android:layout_marginEnd="24dp"
         android:autofillHints="@string/user_email"
-        android:fontFamily="@font/opensansbold"
+        android:fontFamily="@font/robotobold"
         android:background="@drawable/button_nofill"
         android:hint="@string/user_email"
+        android:inputType="textEmailAddress"
         android:paddingStart="20dp"
         android:selectAllOnFocus="true"
         android:textColor="@color/black"
@@ -66,7 +69,7 @@
         android:layout_marginTop="36dp"
         android:layout_marginEnd="24dp"
         android:autofillHints="@string/user_pass"
-        android:fontFamily="@font/opensansbold"
+        android:fontFamily="@font/robotobold"
         android:background="@drawable/button_nofill"
         android:hint="@string/user_pass"
         android:inputType="textPassword"
@@ -86,7 +89,7 @@
         android:layout_marginTop="36dp"
         android:layout_marginEnd="24dp"
         android:autofillHints="@string/user_Number"
-        android:fontFamily="@font/opensansbold"
+        android:fontFamily="@font/robotobold"
         android:background="@drawable/button_nofill"
         android:hint="@string/user_Number"
         android:paddingStart="20dp"
@@ -108,7 +111,8 @@
         android:layout_marginEnd="24dp"
         android:background="@drawable/button_noedge"
         android:text="@string/user_sign"
-        android:fontFamily="@font/opensansbold"
+        android:fontFamily="@font/robotobold"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/groupNumber" />
@@ -120,7 +124,7 @@
         android:layout_marginTop="15dp"
         android:gravity="center"
         android:text="@string/account_have"
-        android:fontFamily="@font/opensansbold"
+        android:fontFamily="@font/robotobold"
         android:textColor="@color/red"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -128,3 +132,4 @@
         app:layout_constraintTop_toBottomOf="@+id/signUpButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
