@@ -6,33 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/title_pName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:paddingLeft="15dp"
-        android:text="@string/text_pName"
-        android:fontFamily="@font/opensansbold"
-        android:textColor="@color/red"
-        android:textSize="34sp"
+        android:src="@drawable/logo"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/title_uName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:paddingLeft="15dp"
+        android:paddingHorizontal="69dp"
         android:text="@string/text_uName"
-        android:fontFamily="@font/opensansbold"
+        android:fontFamily="@font/robotobold"
         android:textColor="@color/red"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_pName" />
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <TextView
         android:id="@+id/textView"
@@ -41,7 +41,7 @@
         android:background="@drawable/button_noedge"
         android:gravity="center_horizontal"
         android:text="@string/text_Medis"
-        android:fontFamily="@font/opensansbold"
+        android:fontFamily="@font/robotobold"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:paddingTop="20dp"
@@ -63,7 +63,7 @@
         android:text="@string/text_openMed"
         android:textSize="20sp"
         android:textColor="@color/red"
-        android:fontFamily="@font/opensansbold"
+        android:fontFamily="@font/robotobold"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="@+id/textView"
