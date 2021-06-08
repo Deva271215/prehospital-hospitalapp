@@ -5,7 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ConfigAPI {
-    private val URL = "http://192.168.18.10:8080/"
+    private val URL = "https://g-one-db.an.r.appspot.com/"
 
     private val okHttpClient = OkHttpClient.Builder()
         .addInterceptor {
